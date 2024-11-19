@@ -57,14 +57,14 @@
             <Button text="수정"  icon="sap-icon://edit"    press="onUpdate" />
         </OverflowToolbar>
         <!-- image TEst -->
-        <!-- image TEst -->
+        <!-- image TEst -->   
         <VBox class="sapUiSmallMarginTopBottom sapUiLargeMarginBeginEnd">
             <HBox justifyContent="SpaceBetween">
                 <VBox>
                     <Text text="Image:" class="sapUiSmallMarginBottom" />
-                    <Image src="img/mattress_double.png" width="{/imageWidth}" />
+                    <Image src="img/{Matnr}.png"  />
                 </VBox>
-                <VBox>
+                <!-- <VBox>
                     <Text id="detailsActiveImage" text="Active state image:" class="sapUiSmallMarginBottom" />
                     <Image ariaDetails="detailsActiveImage" src="img/mattress_queen.png"
                         width="{/imageWidth}"
@@ -78,7 +78,7 @@
                 <VBox>
                     <Text text="Image displaying inline SVG:" class="sapUiSmallMarginBottom" />
                     <Image src="img/premium_mattress_queen.png" mode="InlineSvg"/>
-                </VBox>
+                </VBox> -->
             </HBox>
 	    </VBox>
         <!-- image TEst -->
