@@ -1,0 +1,87 @@
+<mvc:View controllerName="zc501sd.cds0001.priceincrease.controller.Price_Increase_View"
+
+    displayBlock="true"
+    xmlns:t="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core"
+	xmlns:m="sap.m"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <t:Table
+            id="priceList"
+            rows="{/PriceIncreaseSet}"
+            selectionMode="MultiToggle"
+            paste="onPaste"
+            ariaLabelledBy="title">
+            <t:extension>
+                <OverflowToolbar style="Clear">
+                    <Title id="title" text="자재마스터"/>
+                </OverflowToolbar>
+            </t:extension>
+            <!-- Mantr (자재타입) -->
+            <t:columns>
+                <t:Column width="11rem">
+                    <Label text="자재타입" />
+                    <t:template>
+                        <Text text="{Matnr}" wrapping="false" />
+                    </t:template>
+                </t:Column>
+            </t:columns>
+            <!-- Maktx (자재명) -->
+            <t:columns>
+                <t:Column width="11rem">
+                    <Label text="자재타입" />
+                    <t:template>
+                        <Text text="{Maktx}" wrapping="false" />
+                    </t:template>
+                </t:Column>
+            </t:columns>
+
+            <t:columns>
+                <t:Column width="11rem">
+                    <Label text="판매단가" />
+                    <t:template>
+                        <!-- <Text text="{Kzwi1}" wrapping="false" /> -->
+                        <Text text="{
+                            parts:[{path:'Kzwi1'},{path:'Currency'}],
+                            type: 'sap.ui.model.type.Currency',
+                            formatOptions: {showMeasure: true }
+                            }" wrapping="false" />
+                    </t:template>
+                </t:Column>
+            </t:columns>
+        </t:Table>
+               <OverflowToolbar >
+            <ToolbarSpacer width="13rem" />
+            <Button text="수정"  icon="sap-icon://edit"    press="onUpdate" />
+        </OverflowToolbar>
+        <!-- image TEst -->
+        <!-- image TEst -->
+        <VBox class="sapUiSmallMarginTopBottom sapUiLargeMarginBeginEnd">
+            <HBox justifyContent="SpaceBetween">
+                <VBox>
+                    <Text text="Image:" class="sapUiSmallMarginBottom" />
+                    <Image src="img/mattress_double.png" width="{/imageWidth}" />
+                </VBox>
+                <VBox>
+                    <Text id="detailsActiveImage" text="Active state image:" class="sapUiSmallMarginBottom" />
+                    <Image ariaDetails="detailsActiveImage" src="img/mattress_queen.png"
+                        width="{/imageWidth}"
+                        decorative="false"
+                        press="handleImage3Press" />
+                </VBox>
+                <VBox>
+                    <Text text="Image using SVG format:" class="sapUiSmallMarginBottom" />
+                    <Image src="img/premium_mattress_double.png"/>
+                </VBox>
+                <VBox>
+                    <Text text="Image displaying inline SVG:" class="sapUiSmallMarginBottom" />
+                    <Image src="img/premium_mattress_queen.png" mode="InlineSvg"/>
+                </VBox>
+            </HBox>
+	    </VBox>
+        <!-- image TEst -->
+        <!-- image TEst -->
+    </Page>
+</mvc:View>
