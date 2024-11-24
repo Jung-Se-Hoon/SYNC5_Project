@@ -14,41 +14,41 @@
             </VBox>
 
             <!-- Tab Navigation -->
-            <IconTabBar>
+            <IconTabBar select=".onTabSelect">
                 <items>
-                    <IconTabFilter text="전체" />
-                    <IconTabFilter text="모션 침대" />
-                    <IconTabFilter text="매트리스" />
-                    <IconTabFilter text="소파" />
-                    <IconTabFilter text="슬림케어" />
-                    <IconTabFilter text="행사제품" />
+                    <IconTabFilter key="ALL" text="전체" />
+                    <IconTabFilter key="PREMIUM" text="프리미엄" />
+                    <IconTabFilter key="STANDARD" text="일반" />
                 </items>
             </IconTabBar> 
 
-            <f:GridList items="{/PriceIncreaseSet}">
-                <CustomListItem>
-                    <!-- Product List -->
-                    <VBox class="sapUiSmallMargin">
-                        <HBox>
-                            <VBox class="sapUiSmallMargin">
-                                <Image 
-                                    src="img/{Matnr}.png" 
-                                    width="200px" 
-                                    height="150px"
-                                    press=".onImagePress" 
-                                    class="sapUiResponsiveMargin"/>
-                                <Text text="{Maktx}" />
-                                <Text text="{
-                                    parts:[{path:'Kzwi1'},{path:'Waers'}],
-                                    type: 'sap.ui.model.type.Currency',
-                                    formatOptions: { showMeasure: true }
-                                }" wrapping="false" />
-                                <Text text="★ 4.9 (14)" />
-                            </VBox>
-                        </HBox>
-                    </VBox>
-                </CustomListItem>
-            </f:GridList>
+            <f:GridList id="gridList" items="{/PriceIncreaseSet}">
+    <CustomListItem>
+        <!-- Product List -->
+        <VBox class="sapUiSmallMargin" justifyContent="Center" alignItems="Center">
+            <HBox>
+                <VBox class="sapUiSmallMargin">
+                    <Image
+                        src="{path: 'Matnr', formatter: '.formatImagePath'}"
+                        width="200px"
+                        height="150px"
+                        press=".onImagePress"
+                        class="sapUiResponsiveMargin" />
+                    <HBox justifyContent="Center" alignItems="Center" width="100%">
+                        <Text text="{Maktx}" />
+                    </HBox>
+                    <HBox justifyContent="Center" alignItems="Center" width="100%">
+                        <Text text="{
+                            parts:[{path:'Kzwi1'},{path:'Waers'}],
+                            type: 'sap.ui.model.type.Currency',
+                            formatOptions: { showMeasure: true }
+                        }" wrapping="false" />
+                    </HBox>
+                </VBox>
+            </HBox>
+        </VBox>
+    </CustomListItem>
+</f:GridList>
         </content>
     </Page>
 
@@ -58,18 +58,19 @@
         justifyContent="Center"
         alignItems="Center"
         width="100%">
-        <!-- <Image src="img/{Matnr}.png" width="80%" height="200px" /> -->
+        <Image src="{path: 'Matnr', formatter: '.formatImagePath'}" width="80%" height="200px" />
         <Text text="제품명: {Maktx}" textAlign="Center" wrapping="true" class="sapUiSmallMargin" />
         
         <!-- 수정 가능한 Input 필드 -->
         <Input
-            value="{Kzwi1}"
-            description="{Waers}"
-            textAlign="Center"
-            width="80%"
-            class="sapUiSmallMargin"
-            type="Number"
-            liveChange=".onPriceChange" />
+    value="{Kzwi1}" 
+    description="{Waers}"
+    textAlign="Center"
+    width="80%"
+    class="sapUiSmallMargin"
+    type="Number"
+    liveChange=".onPriceChange" />
+
     </VBox>
     <beginButton>
         <Button text="저장" press=".onSavePress" class="sapUiSmallMargin" />
