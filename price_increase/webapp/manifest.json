@@ -75,13 +75,16 @@
         "settings": {}
       }
     },
-    "resources": {
-      "css": [
-        {
-          "uri": "css/style.css"
-        }
-      ]
-    },
+"resources": {
+  "css": [
+    {
+      "uri": "css/style.css"
+    }
+  ],
+  "pathMappings": {
+    "/img/": "img/"
+  }
+},
     "routing": {
       "config": {
         "routerClass": "sap.m.routing.Router",

@@ -1,48 +1,78 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
-    "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator",
-    'sap/m/MessageToast',
-    'sap/ui/Device',
-    'sap/ui/model/json/JSONModel'
+    "sap/ui/core/mvc/Controller"
 ],
-function (Controller, Filter, FilterOperator, MessageToast, Device, JSONModel) {
+function (Controller) {
     "use strict";
 
     return Controller.extend("zc501sd.cds0001.priceincrease.controller.Price_Increase_View", {
         onInit: function () 
         {
-            // let oTable = this.getView().byId("priceList"),  // 현재 View에서 사용할 Table
-            //     oBinding = oTable.getBinding("rows"),       // Binding으로 EntitySet 가져옴
-            //     oFilter  = null;                            // 검색조건
-            //     // aFilter  = []; (나는 검색조건이 1개라 이거 안해도됨)  
-                
-            // oFilter = new Filter("Mtart", FilterOperator.EQ, "FERT" );
-            
-            // // oBinding.filter(oFilter);
+            var sImagePath = sap.ui.require.toUrl("zc501sd/cds0001/priceincrease/img/MTD00000.png");
+            this.getView().byId("headerImage").setSrc(sImagePath);
 
-            // // Image Test
-            // // Image Test
-
-            // // var bIsPhone = Device.system.phone,
-			// // svgLogo = sap.ui.require.toUrl("img"),
-			// // oImgModel;
-
-			// // this.getView().setModel(new JSONModel({
-			// // 	imageWidth: bIsPhone ? "5em" : "10em",
-			// // 	svgLogo: svgLogo
-			// // }));
-
-			// // set explored app's demo model on this sample
-			// oImgModel = new JSONModel(sap.ui.require.toUrl("sap/ui/demo/mock/img.json"));
-			// this.getView().setModel(oImgModel, "img");
-
-            // Image Test
-            // Image Test
+            // var sImagePath2 = sap.ui.require.toUrl("zc501sd/cds0001/priceincrease/img/{Matnr}.png");
+            // this.getView().byId("itemImage").setSrc(sImagePath2);
         },
 
-        handleImage3Press: function(evt) {
-			MessageToast.show("The image has been pressed");
-		}
+        onImagePress: function (oEvent) {
+            // 선택된 데이터 바인딩
+            var oSource = oEvent.getSource();
+            var oContext = oSource.getBindingContext();
+            
+            // 다이얼로그 가져오기
+            var oDialog = this.byId("priceDialog");
+            oDialog.setBindingContext(oContext);
+            oDialog.open();
+        },
+        
+        onEditPress: function () {
+            // 수정 버튼 클릭 시 로직
+            sap.m.MessageToast.show("수정 버튼이 클릭되었습니다.");
+        },
+        
+        onCancelPress: function () {
+            // 다이얼로그 닫기
+            this.byId("priceDialog").close();
+        },
+
+        onPriceChange: function (oEvent) {
+            var sValue = oEvent.getParameter("value");
+            // 입력 값 검증 로직 (예: 음수 값 방지)
+            if (sValue < 0) {
+                sap.m.MessageToast.show("가격은 음수일 수 없습니다.");
+                oEvent.getSource().setValue(0);
+            }
+        },
+
+        onSavePress: function () {
+            var oDialog = this.byId("priceDialog");
+            var oContext = oDialog.getBindingContext();
+            
+            // 수정된 Kzwi1 값을 가져오기
+            var sNewPrice = oDialog.getContent()[0].getItems()[2].getValue(); // Input 필드의 값
+            
+            // 데이터 모델에 값 업데이트
+            oContext.getModel().setProperty(oContext.getPath() + "/Kzwi1", sNewPrice);
+            
+            // 서버로 업데이트 요청 전송 (필요시)
+            this._updatePriceOnServer(oContext.getPath(), sNewPrice);
+        
+            sap.m.MessageToast.show("가격이 저장되었습니다.");
+            oDialog.close();
+        },
+        
+        _updatePriceOnServer: function (sPath, sNewPrice) {
+            // ODataModel 또는 백엔드와의 통신 로직 구현
+            var oModel = this.getView().getModel();
+            oModel.update(sPath, { Kzwi1: sNewPrice }, {
+                success: function () {
+                    sap.m.MessageToast.show("서버에 성공적으로 저장되었습니다.");
+                },
+                error: function () {
+                    sap.m.MessageToast.show("서버 업데이트 중 오류가 발생했습니다.");
+                }
+            });
+        }
+
     });
 });
