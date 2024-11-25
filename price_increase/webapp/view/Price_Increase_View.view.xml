@@ -63,6 +63,7 @@
         
         <!-- 수정 가능한 Input 필드 -->
         <Input
+        id="kzwi1"
     value="{Kzwi1}" 
     description="{Waers}"
     textAlign="Center"

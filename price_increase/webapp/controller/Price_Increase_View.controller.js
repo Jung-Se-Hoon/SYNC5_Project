@@ -115,59 +115,63 @@ function (Controller, Filter, FilterOperator, MessageToast, JSONModel) {
             }
         },
 
-        onSavePress: function () {
-            var oDialog = this.byId("priceDialog");
-            var oContext = oDialog.getBindingContext();
-            var sPath = oContext.getPath(); // 예: "/PriceIncreaseSet('MTD00000')"
+        onSavePress: function () 
+        {
+            var oDialog = this.byId("priceDialog"),
+                oModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZC501SDGW0001_SRV"),
+                oContext = oDialog.getBindingContext(),
+                oData = oContext.getObject();
+                oUpdate  = {};
         
-            var sNewPrice = this.byId("priceDialog").getContent()[0].getItems()[2].getValue();
+            // 자재 코드와 입력된 가격 가져오기
+            var sMatnr = oData.Matnr,
+                sNewPrice = this.byId("priceDialog").getContent()[0].getItems()[2].getValue();
+                // sNewPrice = sap.ui.getCore().byId("kzwi1").getValue();
+
+                // alert(sNewPrice);
         
+            // 유효성 검사
             if (!sNewPrice || isNaN(sNewPrice)) {
                 sap.m.MessageToast.show("유효한 가격을 입력하세요.");
                 return;
             }
         
-            // 변경된 데이터 준비
-            var oUpdatedData = {
-                Kzwi1: sNewPrice
+            // 업데이트 데이터 생성
+            var oUpdate = {
+                Matnr: sMatnr, // 자재 코드
+                Kzwi1: parseFloat(sNewPrice).toFixed(3), // 소수점 3자리 형식으로 변환
+                Waers: oData.Waers // 통화 코드
             };
         
-            // OData 모델 업데이트 요청
-            this.getView().getModel().update(sPath, oUpdatedData, {
+            console.log("업데이트 데이터:", oUpdate);
+        
+            // 경로 생성
+            var sPath = "/PriceIncreaseSet('" + sMatnr + "')";
+            console.log("OData 요청 경로:", sPath);
+        
+            // OData 모델 업데이트 호출
+            oModel.update(sPath, oUpdate, {
                 success: function () {
                     sap.m.MessageToast.show("가격이 성공적으로 저장되었습니다.");
-                },
+                    oModel.refresh();
+                }.bind(this),
                 error: function (oError) {
-                    sap.m.MessageToast.show("가격 저장 중 오류가 발생했습니다.");
-                    console.error(oError);
+                    console.log(sPath, oUpdate)
+                    console.error("업데이트 실패:", oError);
+                    sap.m.MessageToast.show("가격 저장에 실패했습니다.");
                 }
             });
         
+            // 다이얼로그 닫기
             oDialog.close();
         },
         
-        
-        
-        
-        _updatePriceOnServer: function (sPath, sNewPrice) {
-            // ODataModel 또는 백엔드와의 통신 로직 구현
-            var oModel = this.getView().getModel();
-            oModel.update(sPath, { Kzwi1: sNewPrice }, {
-                success: function () {
-                    sap.m.MessageToast.show("서버에 성공적으로 저장되었습니다.");
-                },
-                error: function () {
-                    sap.m.MessageToast.show("서버 업데이트 중 오류가 발생했습니다.");
-                }
-            });
-        },
-
-        formatImagePath: function (sMatnr) {
+        formatImagePath: function (Matnr) {
             // Matnr 값을 기반으로 이미지 경로 반환
-            if (!sMatnr) {
+            if (!Matnr) {
                 return ""; // Matnr 값이 없으면 빈 문자열 반환
             }
-            return sap.ui.require.toUrl("zc501sd/cds0001/priceincrease/img/" + sMatnr + ".png");
+            return sap.ui.require.toUrl("zc501sd/cds0001/priceincrease/img/" + Matnr + ".png");
         }
 
     });
