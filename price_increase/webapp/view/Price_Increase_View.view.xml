@@ -9,10 +9,9 @@
 <Page id="page" title="판매단가 수정">
         <content>
             <!-- Header Image -->
-            <VBox>
-                <Image id="headerImage" width="100%" height="200px" />
-            </VBox>
-
+            <VBox alignItems="Center" justifyContent="Center" height="225px">
+    <Image id="headerImage" src="your-image-source.jpg" width="100%" height="225px" />
+</VBox>
             <!-- Tab Navigation -->
             <IconTabBar select=".onTabSelect">
                 <items>
@@ -23,63 +22,76 @@
             </IconTabBar> 
 
             <f:GridList id="gridList" items="{/PriceIncreaseSet}">
-    <CustomListItem>
-        <!-- Product List -->
-        <VBox class="sapUiSmallMargin" justifyContent="Center" alignItems="Center">
-            <HBox>
-                <VBox class="sapUiSmallMargin">
-                    <Image
-                        src="{path: 'Matnr', formatter: '.formatImagePath'}"
-                        width="200px"
-                        height="150px"
-                        press=".onImagePress"
-                        class="sapUiResponsiveMargin" />
-                    <HBox justifyContent="Center" alignItems="Center" width="100%">
-                        <Text text="{Maktx}" />
-                    </HBox>
-                    <HBox justifyContent="Center" alignItems="Center" width="100%">
-                        <Text text="{
-                            parts:[{path:'Kzwi1'},{path:'Waers'}],
-                            type: 'sap.ui.model.type.Currency',
-                            formatOptions: { showMeasure: true }
-                        }" wrapping="false" />
-                    </HBox>
-                </VBox>
-            </HBox>
-        </VBox>
-    </CustomListItem>
-</f:GridList>
+                <CustomListItem>
+                    <VBox class="sapUiSmallMargin" justifyContent="Center" alignItems="Center">
+                        <!-- 이미지 -->
+                        <Image
+                            src="{path: 'Matnr', formatter: '.formatImagePath'}"
+                            width="200px"
+                            height="150px"
+                            press=".onImagePress"
+                             />
+                        <!-- 제품명 -->
+                        <VBox justifyContent="Center" alignItems="Center" width="100%">
+                            <Text text="{Maktx}" textAlign="Center" />
+                        </VBox>
+                        <!-- 가격 -->
+                        <VBox justifyContent="Center" alignItems="Center" width="100%">
+                            <Text
+                                text="{
+                                    parts:[{path:'Kzwi1'},{path:'Waers'}],
+                                    type: 'sap.ui.model.type.Currency',
+                                    formatOptions: { showMeasure: true }
+                                }"
+                                textAlign="Center" />
+                        </VBox>
+                    </VBox>
+                </CustomListItem>
+            </f:GridList>
         </content>
     </Page>
-
-<Dialog id="priceDialog" title="판매 가격 상세">
-    <VBox
-        class="sapUiSmallMargin sapUiResponsiveMargin"
-        justifyContent="Center"
-        alignItems="Center"
-        width="100%">
-        <Image src="{path: 'Matnr', formatter: '.formatImagePath'}" width="80%" height="200px" />
-        <Text text="제품명: {Maktx}" textAlign="Center" wrapping="true" class="sapUiSmallMargin" />
-        
-        <!-- 수정 가능한 Input 필드 -->
-        <Input
-        id="kzwi1"
-    value="{Kzwi1}" 
-    description="{Waers}"
-    textAlign="Center"
-    width="80%"
-    class="sapUiSmallMargin"
-    type="Number"
-    liveChange=".onPriceChange" />
-
-    </VBox>
-    <beginButton>
-        <Button text="저장" press=".onSavePress" class="sapUiSmallMargin" />
-    </beginButton>
-    <endButton>
-        <Button text="취소" press=".onCancelPress" class="sapUiSmallMargin" />
-    </endButton>
-</Dialog>
+    <Dialog
+        id="priceDialog"
+        title="판매 가격 상세"
+        contentWidth="auto"
+        contentHeight="auto"
+        stretch="false">
+        <VBox
+            justifyContent="Center"
+            alignItems="Center"
+            width="100%"
+            class="sapUiResponsiveMargin">
+            <Image
+                src="{path: 'Matnr', formatter: '.formatImagePath'}"
+                width="90%"
+                height="auto" />
+            <Text
+                text="제품명: {Maktx}"
+                textAlign="Center"
+                wrapping="true"
+                 />
+            <HBox
+                justifyContent="Center"
+                alignItems="Center"
+                width="90%"
+                >
+                <Input
+                    id="kzwi1"
+                    value="{Kzwi1}"
+                    description="{Waers}"
+                    textAlign="Center"
+                    width="100%"
+                    type="Number"
+                    liveChange=".onPriceChange" />
+            </HBox>
+        </VBox>
+        <beginButton>
+            <Button text="저장" press=".onSavePress" class="sapUiSmallMargin" />
+        </beginButton>
+        <endButton>
+            <Button text="취소" press=".onCancelPress" class="sapUiSmallMargin" />
+        </endButton>
+    </Dialog>
 
 
 </mvc:View>

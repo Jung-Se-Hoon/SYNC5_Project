@@ -12,7 +12,7 @@ function (Controller, Filter, FilterOperator, MessageToast, JSONModel) {
         onInit: function () 
         {
             
-            var sImagePath = sap.ui.require.toUrl("zc501sd/cds0001/priceincrease/img/MTD00000.png");
+            var sImagePath = sap.ui.require.toUrl("zc501sd/cds0001/priceincrease/img/ZDH.png");
             this.getView().byId("headerImage").setSrc(sImagePath);
 
             var oModel = this.getView().getModel(); // 모델 가져오기
@@ -125,7 +125,8 @@ function (Controller, Filter, FilterOperator, MessageToast, JSONModel) {
         
             // 자재 코드와 입력된 가격 가져오기
             var sMatnr = oData.Matnr,
-                sNewPrice = this.byId("priceDialog").getContent()[0].getItems()[2].getValue();
+                // sNewPrice = this.byId("priceDialog").getContent()[0].getItems()[2].getValue();
+                sNewPrice = this.byId("kzwi1").getValue();
                 // sNewPrice = sap.ui.getCore().byId("kzwi1").getValue();
 
                 // alert(sNewPrice);
@@ -153,7 +154,8 @@ function (Controller, Filter, FilterOperator, MessageToast, JSONModel) {
             oModel.update(sPath, oUpdate, {
                 success: function () {
                     sap.m.MessageToast.show("가격이 성공적으로 저장되었습니다.");
-                    oModel.refresh();
+
+                    oContext.getModel().setProperty(oContext.getPath() + "/Kzwi1", parseFloat(sNewPrice).toFixed(3));
                 }.bind(this),
                 error: function (oError) {
                     console.log(sPath, oUpdate)
