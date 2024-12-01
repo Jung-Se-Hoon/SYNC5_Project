@@ -1,0 +1,61 @@
+<mvc:View controllerName="zc501sd.gw0004.priceapproval.controller.ApprovalView"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page title="판매 단가 결재">
+        <content>
+            <!-- 테이블 -->
+            <Table id="priceTable" inset="false" items="{/PriceIncreaseApSet}">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="판매 단가 승인 리스트" />
+                        <ToolbarSpacer />
+                        <Button text="새로고침" press="onRefreshPress" />
+                    </Toolbar>
+                </headerToolbar>
+                
+                <columns>
+                    <Column>
+                        <Text text="자재 코드" />
+                    </Column>
+                    <Column>
+                        <Text text="자재 이름" />
+                    </Column>
+                    <Column>
+                        <Text text="현재 단가" />
+                    </Column>
+                    <Column>
+                        <Text text="요청 단가" />
+                    </Column>
+                    <Column>
+                        <Text text="승인 상태" />
+                    </Column>
+                    <Column>
+                        <Text text="승인 반려" />
+                    </Column>
+                </columns>
+                
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{Matnr}" />
+                            <Text text="{Maktx}" />
+                            <Text text="{Nkzwi1}" />
+                            <Text
+                                text="{
+                                    parts:[{path:'Kzwi1'},{path:'Waers'}],
+                                    type: 'sap.ui.model.type.Currency',
+                                    formatOptions: { showMeasure: true }
+                                }"
+                                textAlign="Center" />
+                            <Text text="{KFlag}" />
+                            <HBox>
+                                <Button text="승인" press="onApprovePress" />
+                                <Button text="반려" press="onRejectPress" />
+                            </HBox>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>
