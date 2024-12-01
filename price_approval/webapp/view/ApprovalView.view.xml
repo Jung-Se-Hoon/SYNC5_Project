@@ -4,7 +4,7 @@
     <Page title="판매 단가 결재">
         <content>
             <!-- 테이블 -->
-            <Table id="priceTable" inset="false" items="{/PriceIncreaseApSet}">
+            <Table id="priceTable" inset="false" items="{/PriceIncreaseAp2Set}">
                 <headerToolbar>
                     <Toolbar>
                         <Title text="판매 단가 승인 리스트" />
@@ -39,7 +39,13 @@
                         <cells>
                             <Text text="{Matnr}" />
                             <Text text="{Maktx}" />
-                            <Text text="{Nkzwi1}" />
+                            <Text
+                                text="{
+                                    parts:[{path:'Nkzwi1'},{path:'Waers'}],
+                                    type: 'sap.ui.model.type.Currency',
+                                    formatOptions: { showMeasure: true }
+                                }"
+                                textAlign="Center" />
                             <Text
                                 text="{
                                     parts:[{path:'Kzwi1'},{path:'Waers'}],
