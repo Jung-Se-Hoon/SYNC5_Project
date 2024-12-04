@@ -6,8 +6,11 @@ function (Controller, MessageToast) {
     "use strict";
 
     return Controller.extend("zc501sd.gw0004.priceapproval.controller.ApprovalView", {
-        onInit: function () {
-            // 초기화 로직 추가 가능
+        onInit: function () 
+        {
+            
+                
+
         },
 
         // 새로고침 버튼 로직

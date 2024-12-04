@@ -1,5 +1,10 @@
 <mvc:View controllerName="zc501sd.gw0004.priceapproval.controller.ApprovalView"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    displayBlock="true"
+    xmlns:viz="sap.viz.ui5.controls" 
+    xmlns:layout="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
     xmlns="sap.m">
     <Page title="판매 단가 결재">
         <content>
@@ -63,6 +68,41 @@
                     </ColumnListItem>
                 </items>
             </Table>
+
+            
+<viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
+    height="400px" width="100%" vizType="line">
+    <viz:dataset>
+        <viz.data:FlattenedDataset data="{/PriceIncreaseAp2Set}">
+            <viz.data:dimensions>
+                <!-- 순번(Seq)을 X축으로 설정 -->
+                <viz.data:DimensionDefinition name="순번" value="{Seq}" />
+                <!-- 자재(Matnr)를 색상으로 구분 -->
+                <viz.data:DimensionDefinition name="자재" value="{Matnr}" />
+            </viz.data:dimensions>
+            <viz.data:measures>
+                <!-- 금액(Kzwi1)을 Y축으로 설정 -->
+                <viz.data:MeasureDefinition name="금액" value="{Kzwi1}" />
+            </viz.data:measures>
+        </viz.data:FlattenedDataset>
+    </viz:dataset>
+
+    <viz:feeds>
+        <!-- Y축: 금액 -->
+        <viz.feeds:FeedItem id="valueAxisFeed" uid="valueAxis" type="Measure" values="금액" />
+        <!-- X축: 순번 -->
+        <viz.feeds:FeedItem id="categoryAxisFeed" uid="categoryAxis" type="Dimension" values="순번" />
+        <!-- 색상으로 자재 구분 -->
+        <viz.feeds:FeedItem id="colorFeed" uid="color" type="Dimension" values="자재" />
+    </viz:feeds>
+    <viz:dependents>
+        <viz:Popover id="idPopOver"></viz:Popover>
+    </viz:dependents>
+</viz:VizFrame>
+
+
+
+
         </content>
     </Page>
 </mvc:View>
