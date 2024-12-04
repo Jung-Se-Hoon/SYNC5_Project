@@ -19,10 +19,10 @@ function (Controller, MessageToast) {
 
         // 승인 버튼 로직
         onApprovePress: function (oEvent) {
-            var oModel = this.getView().getModel(),
-                oSource = oEvent.getSource(),
-                oContext = oSource.getBindingContext(),
-                oData = oContext.getObject();
+            var oSource = oEvent.getSource();
+            var oContext = oSource.getBindingContext();
+            var oModel = this.getView().getModel();
+            var oData = oContext.getObject();
         
             var sMatnr = oData.Matnr;
             var sSeq = oData.Seq;
@@ -35,27 +35,28 @@ function (Controller, MessageToast) {
             var sPath = "/PriceIncreaseAp2Set(Matnr='" + encodeURIComponent(sMatnr) + "',Seq=" + sSeq + ")";
             var oUpdate = { KFlag: "Y" };
         
+            // 승인 버튼 비활성화
+            var oHBox = oSource.getParent();
+            oHBox.getItems().forEach(function (oButton) {
+                oButton.setEnabled(false);
+            });
+        
             oModel.update(sPath, oUpdate, {
                 success: function () {
                     sap.m.MessageToast.show("승인되었습니다.");
                     oContext.getModel().setProperty(oContext.getPath() + "/KFlag", "Y"); // 모델 상태 업데이트
                 },
-                error: function (oError) {
+                error: function () {
                     sap.m.MessageToast.show("업데이트에 실패했습니다.");
                 }
             });
-        }
+        },
         
-        
-        
-        ,
-
-        // 반려 버튼 로직
         onRejectPress: function (oEvent) {
-            var oModel = this.getView().getModel(),
-                oSource = oEvent.getSource(),
-                oContext = oSource.getBindingContext(),
-                oData = oContext.getObject();
+            var oSource = oEvent.getSource();
+            var oContext = oSource.getBindingContext();
+            var oModel = this.getView().getModel();
+            var oData = oContext.getObject();
         
             var sMatnr = oData.Matnr;
             var sSeq = oData.Seq;
@@ -68,16 +69,24 @@ function (Controller, MessageToast) {
             var sPath = "/PriceIncreaseAp2Set(Matnr='" + encodeURIComponent(sMatnr) + "',Seq=" + sSeq + ")";
             var oUpdate = { KFlag: "N" };
         
+            // 반려 버튼 비활성화
+            var oHBox = oSource.getParent();
+            oHBox.getItems().forEach(function (oButton) {
+                oButton.setEnabled(false);
+            });
+        
             oModel.update(sPath, oUpdate, {
                 success: function () {
                     sap.m.MessageToast.show("반려되었습니다.");
                     oContext.getModel().setProperty(oContext.getPath() + "/KFlag", "N"); // 모델 상태 업데이트
                 },
-                error: function (oError) {
+                error: function () {
                     sap.m.MessageToast.show("업데이트에 실패했습니다.");
                 }
             });
         }
+        
+        
         
         
         
