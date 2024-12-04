@@ -21,6 +21,9 @@
                         <Text text="자재 이름" />
                     </Column>
                     <Column>
+                        <Text text="순서" />
+                    </Column>
+                    <Column>
                         <Text text="현재 단가" />
                     </Column>
                     <Column>
@@ -39,6 +42,7 @@
                         <cells>
                             <Text text="{Matnr}" />
                             <Text text="{Maktx}" />
+                            <Text text="{Seq}" /> <!-- Seq 필드 추가 -->
                             <Text
                                 text="{
                                     parts:[{path:'Nkzwi1'},{path:'Waers'}],
