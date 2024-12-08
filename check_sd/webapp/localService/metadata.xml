@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZC501SDGW0006_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="CheckSD" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Vbeln"/>
+                    <PropertyRef Name="Posnr"/>
+                </Key>
+                <Property Name="Vbeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="오더번호" sap:updatable="false"/>
+                <Property Name="Posnr" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item" sap:updatable="false"/>
+                <Property Name="Sbelnr" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="매출번호"/>
+                <Property Name="Matnr" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="자재코드"/>
+                <Property Name="Netwr" Type="Edm.Decimal" Precision="16" Scale="3" sap:unicode="false" sap:unit="Waers" sap:label="Net Value"/>
+                <Property Name="Waers" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:semantics="currency-code"/>
+                <Property Name="Kwmeng" Type="Edm.Decimal" Precision="15" Scale="3" sap:unicode="false" sap:unit="Vrkme" sap:label="Order quantity"/>
+                <Property Name="Vrkme" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Sales unit" sap:semantics="unit-of-measure"/>
+                <Property Name="Kunnr" Type="Edm.String" MaxLength="6" sap:unicode="false" sap:label="고객코드"/>
+                <Property Name="Scacd" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="배송업체"/>
+                <Property Name="Lgort" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="저장창고"/>
+                <Property Name="Audat" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="주문날짜"/>
+                <Property Name="Per03" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date"/>
+                <Property Name="TotAmount" Type="Edm.Decimal" Precision="24" Scale="3" sap:unicode="false" sap:unit="Waers" sap:label="Amount"/>
+                <Property Name="PeridCo" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="사원코드"/>
+                <Property Name="Erdat" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Created on"/>
+                <Property Name="Erzet" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Time"/>
+                <Property Name="Ernam" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Created by"/>
+                <Property Name="Aedat" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Changed On"/>
+                <Property Name="Aezet" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Time of change"/>
+                <Property Name="Aenam" Type="Edm.String" MaxLength="12" sap:unicode="false" sap:label="Changed by"/>
+            </EntityType>
+            <EntityContainer Name="ZC501SDGW0006_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="CheckSDSet" EntityType="ZC501SDGW0006_SRV.CheckSD" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://edu.bgis.co.kr:8001/sap/opu/odata/sap/ZC501SDGW0006_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://edu.bgis.co.kr:8001/sap/opu/odata/sap/ZC501SDGW0006_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

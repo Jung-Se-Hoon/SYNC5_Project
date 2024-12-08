@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: zc501sd.gw0006.checksd
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: http://edu.bgis.co.kr:8001/
+          client: "100"
+        app:
+          name: ZC501SDGW0006
+          description: Check_SD
+          package: ZC501GW
+          transport: KYSK904684
+        exclude:
+          - /test/

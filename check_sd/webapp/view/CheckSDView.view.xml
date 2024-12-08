@@ -1,0 +1,79 @@
+<mvc:View controllerName="zc501sd.gw0006.checksd.controller.CheckSDView"
+    displayBlock="true"
+    xmlns:layout="sap.ui.layout"
+    xmlns:t="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m">
+    <Page id="page" >
+        <Table id="SDTable" inset="false" items="{/CheckSDSet}" growing="true" growingThreshold="10">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="출고문서 조회" />
+                        <ToolbarSpacer />
+                        <Button text="새로고침" press="onRefreshPress" />
+                    </Toolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column>
+                        <Text text="오더번호" />
+                    </Column>
+                    <Column>
+                        <Text text="오더아이템번호" />
+                    </Column>
+                    <Column>
+                        <Text text="매출번호" />
+                    </Column>
+                    <Column>
+                        <Text text="자재코드" />
+                    </Column>
+                    <Column>
+                        <Text text="판매단가" />
+                    </Column>
+                    <Column>
+                        <Text text="통화키" />
+                    </Column>
+                    <Column>
+                        <Text text="수량" />
+                    </Column>
+                    <Column>
+                        <Text text="단위" />
+                    </Column>
+                    <Column>
+                        <Text text="고객코드" />
+                    </Column>
+                    <Column>
+                        <Text text="배송업체" />
+                    </Column>
+                    <Column>
+                        <Text text="스토리지코드" />
+                    </Column>
+                    <Column>
+                        <Text text="총액" />
+                    </Column>
+                    <Column>
+                        <Text text="사원코드" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{Vbeln}" />
+                            <Text text="{Posnr}" />
+                            <Text text="{Sbelnr}" />
+                            <Text text="{Matnr}" />
+                            <Text text="{Netwr}" />
+                            <Text text="{Waers}" />
+                            <Text text="{Kwmeng}" />
+                            <Text text="{Vrkme}" />
+                            <Text text="{Kunnr}" />
+                            <Text text="{Scacd}" />
+                            <Text text="{Lgort}" />
+                            <Text text="{TotAmount}" />
+                            <Text text="{PeridCo}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+    </Page>
+</mvc:View>

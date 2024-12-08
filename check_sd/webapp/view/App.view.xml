@@ -1,0 +1,14 @@
+<mvc:View controllerName="zc501sd.gw0006.checksd.controller.App"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <VBox >
+        <Toolbar id="commonToolbar" design="Auto">
+            <Image src="/sap/bc/ui5_ui5/sap/zc501sdgw0006/img/ZDH.png" width="6rem" class="sapUiSmallMarginEnd" />
+            <Title text="Dream High"/>
+            <ToolbarSpacer />
+        </Toolbar>
+        <App id="app">
+        </App>
+    </VBox>
+</mvc:View>
