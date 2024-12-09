@@ -67,7 +67,11 @@
             </Table>
 
             <viz:VizFrame id="priceChart" uiConfig="{applicationSet:'fiori'}"
-                height="400px" width="100%" vizType="line">
+                height="400px" width="100%" vizType="line" vizProperties="{  title : {text:'판매단가 변동률'},
+                                plotArea : { drawingEffect: 'glossy' },
+                                  legend : { drawingEffect: 'glossy' } }" 
+                                  visible="true"> 
+                
                 <viz:dataset>
                     <viz.data:FlattenedDataset data="{/PriceIncreaseAp2Set}">
                         <viz.data:dimensions>

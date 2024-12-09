@@ -145,7 +145,7 @@ sap.ui.define([
             // OData 모델 CREATE 호출
             oModel.create("/PriceIncreaseSet", oCreateData, {
                 success: function () {
-                    sap.m.MessageToast.show("가격이 성공적으로 저장되었습니다.");
+                    sap.m.MessageToast.show("판매단가 수정 요청을 성공했습니다.");
                 }.bind(this),
                 error: function (oError) {
                     console.error("생성 실패:", oError);
