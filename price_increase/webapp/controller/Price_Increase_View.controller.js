@@ -76,7 +76,6 @@ sap.ui.define([
                     and: false // OR 조건
                 }));
             }
-
             // 필터 적용
             oBinding.filter(aFilters);
         },
@@ -152,7 +151,6 @@ sap.ui.define([
                     sap.m.MessageToast.show("가격 저장에 실패했습니다.");
                 }
             });
-        
             // 다이얼로그 닫기
             oDialog.close();
         },

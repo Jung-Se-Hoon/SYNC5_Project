@@ -83,13 +83,11 @@
                         </viz.data:measures>
                     </viz.data:FlattenedDataset>
                 </viz:dataset>
-
                 <viz:feeds>
                     <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="금액" />
                     <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="가격 상승 그래프" />
                     <viz.feeds:FeedItem uid="color" type="Dimension" values="자재" />
                 </viz:feeds>
-
                 <viz:dependents>
                     <viz:Popover />
                 </viz:dependents>
